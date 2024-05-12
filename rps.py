@@ -1,3 +1,5 @@
+# Let's play Rock, Paper, Scissors!
+
 import os, time, random
 
 def gameIntro():
