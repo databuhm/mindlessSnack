@@ -3,16 +3,16 @@
 import os, time, random
 
 def gameIntro():
-    print("[&] 가위바위보 게임! [&]")
+    print("[&] Rock, Paper, Scissors Game! [&]")
     print("$-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+$")
 
 def getName():
-    userName = str(input("이름 > "))
+    userName = str(input("Name > "))
     return userName
 
 def setUpIntro(userName):
-    print(f"{userName} 님, 행운을 빕니다!")
-    print("게임을 준비 중입니다.")
+    print(f"{userName}, best of luck!")
+    print("Preparing the game.")
     time.sleep(1)
 
 def screenClear():
@@ -35,12 +35,12 @@ def initPlay(userName, initCoin):
             if playChoice in [0, 1]:
                 return playChoice
             else:
-                print("0 또는 1을 입력해주세요.\n")
+                print("Please enter 0 or 1.\n")
         except ValueError:
-            print("0 또는 1을 입력해주세요.\n")
+            print("Please enter 0 or 1.\n")
 
 def gameOutro():
-    print("\n[&] 게임을 종료합니다. [&]")
+    print("\n[&] Exiting the game. [&]")
     print("[&] Good Bye! [&]")
     print("$-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+$")
 
@@ -50,22 +50,22 @@ def userChoiceWay(userChoice):
         exit()
 
 def betCoin(initCoin):
-    print(f"\n현재 보유 코인: {initCoin}")
-    print("이번 게임에 베팅할 코인을 입력해주세요.")
+    print(f"\nCurrent Coins: {initCoin}")
+    print("Enter the number of coins to bet for this game.")
     while True:
         try:
             userBet = int(input(">>> \n"))
             if userBet <= initCoin and userBet > 0:
                 return userBet
             elif userBet <= 0:
-                print("베팅 금액은 0보다 커야 합니다.\n")
+                print("The betting amount must be more than 0.\n")
             else:
-                print("당신의 코인이 충분하지 않습니다.\n")
+                print("You do not have enough coins.\n")
         except ValueError:
-            print("올바른 숫자를 입력해주세요.\n")
+            print("Please enter a valid number.\n")
 
 def getUserRPS(dictRPS):
-    print("\n[-] 아래 선택지 중 하나를 선택해주세요.")
+    print("\n[-] Please choose one of the following.")
     for key, value in dictRPS.items():
         print(f"{key}: {value}")
     while True:
@@ -74,9 +74,9 @@ def getUserRPS(dictRPS):
             if userRPS in dictRPS:
                 return dictRPS[userRPS]
             else:
-                print("0, 1, 2 중에 선택해주세요.\n")
+                print("Please select from 0, 1, 2.\n")
         except ValueError:
-            print("숫자로 입력해주세요.\n")
+            print("Please enter a number.\n")
 
 def getComputerRPS(dictRPS):
     computerRPS = random.choice(list(dictRPS.keys()))
@@ -96,25 +96,25 @@ def showBothResult(userChoice, computerChoice):
 def determineWinner(userChoice, computerChoice, userBet, initCoin):
     showBothResult(userChoice, computerChoice)
     if userChoice == computerChoice:
-        return initCoin, "[$] Game 결과: 무승부!"
-    elif (userChoice == "가위" and computerChoice == "보") or \
-         (userChoice == "바위" and computerChoice == "가위") or \
-         (userChoice == "보" and computerChoice == "바위"):
+        return initCoin, "[$] Game Result: It's a tie!"
+    elif (userChoice == "Rock" and computerChoice == "Scissors") or \
+         (userChoice == "Paper" and computerChoice == "Rock") or \
+         (userChoice == "Scissors" and computerChoice == "Paper"):
         initCoin += userBet
-        return initCoin, "[$] Game 결과: 축하합니다, 당신이 이겼습니다!"
+        return initCoin, "[$] Game Result: Congratulations, you won!"
     else:
         initCoin -= userBet
-        return initCoin, "[$] Game 결과: 안타깝지만, 컴퓨터가 이겼습니다."
+        return initCoin, "[$] Game Result: Unfortunately, the computer won."
 
 def playAgain(initCoin):
     if initCoin <= 0:
-        print("[$] 당신의 코인이 모두 소진되었습니다. 게임을 종료합니다.")
+        print("[$] You have run out of coins. Exiting the game.")
         gameOutro()
         exit()
     else:
-        print("\n[+] 다시 플레이하시겠습니까?")
-        print("1: 예")
-        print("0: 아니요")
+        print("\n[+] Would you like to play again?")
+        print("1: Yes")
+        print("0: No")
         while True:
             try:
                 choice = int(input(">>> \n"))  
@@ -124,9 +124,9 @@ def playAgain(initCoin):
                     gameOutro()
                     exit()
                 else:
-                    print("0과 1중에 선택해주세요.\n")
+                    print("Please choose between 0 and 1.\n")
             except ValueError:
-                print("0과 1중에 선택해주세요.\n")
+                print("Please choose between 0 and 1.\n")
 
 # Main Game Loop
 gameIntro()
@@ -142,7 +142,7 @@ while True:
         userChoiceWay(userChoice)
         firstTime = False
     userBet = betCoin(initCoin)
-    dictRPS = {0: "가위", 1: "바위", 2: "보"}
+    dictRPS = {0: "Rock", 1: "Paper", 2: "Scissors"}
     userChoice = getUserRPS(dictRPS)
     computerChoice = getComputerRPS(dictRPS)
     showRPSAnimation(dictRPS) # Show Animation
