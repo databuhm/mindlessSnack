@@ -115,12 +115,18 @@ def playAgain(initCoin):
         print("\n[+] 다시 플레이하시겠습니까?")
         print("1: 예")
         print("0: 아니요")
-        choice = int(input(">>> \n"))
-        if choice == 1:
-            return True
-        else:
-            gameOutro()
-            exit()
+        while True:
+            try:
+                choice = int(input(">>> \n"))  
+                if choice == 1:
+                    return True
+                elif choice == 0:
+                    gameOutro()
+                    exit()
+                else:
+                    print("0과 1중에 선택해주세요.\n")
+            except ValueError:
+                print("0과 1중에 선택해주세요.\n")
 
 # Main Game Loop
 gameIntro()
