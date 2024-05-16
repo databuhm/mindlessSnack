@@ -24,8 +24,8 @@ int main(int argc, char** argv) {
     return 0; // This line is not reached if execvp is successful
 }
 
-'''
+/*
 gcc -o setuid-root setUidRoot.c
 sudo chown root:root setuid-root
 sudo chmod 4755 setuid-root
-'''
+*/
