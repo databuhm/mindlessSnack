@@ -39,9 +39,9 @@ def programOutro():
 def main():
     programIntro()
     userChoice = input("Choose an option:\n"
-                       "    1. Encrypt/Decrypt an existing file\n"
-                       "    2. Write a new message to encrypt\n"
-                       "    3. Exit\n"
+                       "\t1. Encrypt/Decrypt an existing file\n"
+                       "\t2. Write a new message to encrypt\n"
+                       "\t3. Exit\n"
                        "\nEnter your choice (1 or 2 or 3): ")
     if userChoice == '1':
         while True:
